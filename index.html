@@ -163,19 +163,21 @@
                 <div class="progress-bar" id="progressBar"><span id="progressText"></span></div>
             </div>
 
-            <div class="metrics-summary-simple">
-                <p><span class="metric-icon-small" id="iconMistakes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg></span><strong>Mistakes Made:</strong> <span id="mistakesMade">0</span></p>
-                <p><span class="metric-icon-small" id="iconWords"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h12v16H6V4zm5 14h2v-2h-2v2zm0-4h2V8h-2v6z"/></svg></span><strong>Words Read:</strong> <span id="wordsRead">0</span></p>
-                <p><span class="metric-icon-small" id="iconCharacters"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M20 5H4c-1.1 0-1.99.9-1.99 2L2 17c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2V8zm12 7H5v-2h14v2zm-2-4h-2V8h2v2zm0-3h-2V8h2V8z"/></svg></span><strong>Characters Typed:</strong> <span id="charactersTyped">0</span></p>
-                <p><span class="metric-icon-small" id="iconSessions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></span><strong>Sessions Followed:</strong> <span id="sessionsFollowed">0</span></p>
-                <p><span class="metric-icon-small" id="iconStatus"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span><strong>Programmer Status:</strong> <span id="programmerStatus" style="color: #00ffff;">Initiate</span></p>
-            </div>
+            <div class="stats-and-skills-container">
+                <div class="metrics-summary-simple">
+                    <p><span class="metric-icon-small" id="iconMistakes"></span><strong>Mistakes Made:</strong> <span id="mistakesMade">0</span></p>
+                    <p><span class="metric-icon-small" id="iconWords"></span><strong>Words Read:</strong> <span id="wordsRead">0</span></p>
+                    <p><span class="metric-icon-small" id="iconCharacters"></span><strong>Characters Typed:</strong> <span id="charactersTyped">0</span></p>
+                    <p><span class="metric-icon-small" id="iconSessions"></span><strong>Sessions Followed:</strong> <span id="sessionsFollowed">0</span></p>
+                    <p><span class="metric-icon-small" id="iconStatus"></span><strong>Programmer Status:</strong> <span id="programmerStatus" style="color: #00ffff;">Initiate</span></p>
+                </div>
 
-            <div class="skills-learned" style="margin-top: 30px;">
-                <h3>Skills Learned</h3>
-                <ul id="skillsList" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-                    <!-- Skills will be populated by JS -->
-                </ul>
+                <div class="skills-learned">
+                    <h3>Skills Learned</h3>
+                    <ul id="skillsList" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                        <!-- Skills will be populated by JS -->
+                    </ul>
+                </div>
             </div>
         </div>
 
