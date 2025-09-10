@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postman Learning Dashboard</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #1c1e21;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        header {
+            border-bottom: 1px solid #dddfe2;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        header p {
+            margin: 5px 0 0;
+            color: #606770;
+        }
+        .progress-tracker {
+            margin-bottom: 20px;
+        }
+        .progress-tracker h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e9ebee;
+            border-radius: 4px;
+            height: 20px;
+        }
+        .progress-bar {
+            width: 0%; /* Set by JS */
+            height: 100%;
+            background-color: #42b72a;
+            border-radius: 4px;
+            transition: width 0.5s ease-in-out;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            font-weight: bold;
+        }
+        .session {
+            margin-bottom: 30px;
+        }
+        .session-title {
+            font-size: 20px;
+            color: #1c1e21;
+            border-bottom: 1px solid #dddfe2;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .qa-card {
+            background: #f7f8fa;
+            border: 1px solid #dddfe2;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .qa-card h4 {
+            font-size: 16px;
+            margin: 0 0 10px;
+        }
+        .attempt, .explanation {
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        .attempt {
+            background-color: #ffebe8;
+            border: 1px solid #ffc9c4;
+        }
+        .explanation {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+        }
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            background: #e9ebee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #e9ebee;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Postman Learning Dashboard</h1>
+            <p>A summary of your API testing practice sessions.</p>
+        </header>
+
+        <div class="progress-tracker">
+            <h2>Overall Progress</h2>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"><span id="progressText"></span></div>
+            </div>
+        </div>
+
+        <main>
+            <section class="session">
+                <h2 class="session-title">Session 1: Real-World Application Test (ReqRes API)</h2>
+                <p><em>This session used the ReqRes API (<code>https://reqres.in/</code>) to test basic CRUD operations.</em></p>
+
+                <div class="qa-card">
+                    <h4>Test 1: Reading Data (GET)</h4>
+                    <p><strong>Scenario:</strong> You are working on a web application and need to fetch the data for a single user whose ID is <code>2</code> to display on their profile page.</p>
+                    <div class="attempt">
+                        <strong>Your Attempt:</strong>
+                        <pre><code>GET https://reqres.in/useriD=1</code></pre>
+                    </div>
+                    <div class="explanation">
+                        <strong>Correct Answer & Explanation:</strong>
+                        <p>Method: <code>GET</code><br>URL: <code>https://reqres.in/api/users/2</code></p>
+                        <p>The <code>GET</code> method was correct. The URL needed correction: for a single resource, the ID (<code>2</code>) should be part of the path. The path was also missing the <code>/api/</code> segment. Query parameters (<code>?</code>) are typically for filtering lists, not fetching single items by ID.</p>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <h4>Test 2: Creating Data (POST)</h4>
+                    <p><strong>Scenario:</strong> A new user, 'Morpheus', has just signed up. His job title is 'leader'. You need to create a new record for him in the system.</p>
+                    <div class="attempt">
+                        <strong>Your Attempt:</strong>
+                        <pre><code>methd = get, url is regres.in/api/users and json body is</code></pre>
+                    </div>
+                    <div class="explanation">
+                        <strong>Correct Answer & Explanation:</strong>
+                        <p>Method: <code>POST</code><br>URL: <code>https://reqres.in/api/users</code></p>
+                        <p>Body (Raw JSON):</p>
+                        <pre><code>{
+    "name": "morpheus",
+    "job": "leader"
+}</code></pre>
+                        <p>The method to create new data is <code>POST</code>. The URL had a typo (<code>regres</code> instead of <code>reqres</code>). A <code>POST</code> request also requires a JSON body containing the data for the new user.</p>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <h4>Test 3: Updating Data (PUT)</h4>
+                    <p><strong>Scenario:</strong> Morpheus has been promoted! You need to update his record (user ID <code>2</code>) to change his job title to 'zion resident'.</p>
+                    <div class="attempt">
+                        <strong>Your Attempt:</strong>
+                        <pre><code>POST https://regres.in/api/users/2
+
+Body:
+{
+  "Name": "Morpheus",
+  "Job": "zion rezident",
+  "userId": 2
+}</code></pre>
+                    </div>
+                    <div class="explanation">
+                        <strong>Correct Answer & Explanation:</strong>
+                        <p>Method: <code>PUT</code><br>URL: <code>https://reqres.in/api/users/2</code></p>
+                        <p>Body (Raw JSON):</p>
+                        <pre><code>{
+    "name": "morpheus",
+    "job": "zion resident"
+}</code></pre>
+                        <p>The method to update existing data is <code>PUT</code>. The URL had a typo. The JSON body should use lowercase keys (<code>name</code>, <code>job</code>) as expected by the API, and the redundant <code>userId</code> is not needed.</p>
+                    </div>
+                </div>
+
+                <div class="qa-card">
+                    <h4>Test 4: Deleting Data (DELETE)</h4>
+                    <p><strong>Scenario:</strong> A user account (ID <code>2</code>) needs to be deleted.</p>
+                    <div class="attempt">
+                        <strong>Your Attempt:</strong>
+                        <pre><code>DELETE https://regres.in/api/users/2
+
+Body:
+{
+  "Name": "morpheus",
+  "Job": "Zion resident"
+}</code></pre>
+                    </div>
+                    <div class="explanation">
+                        <strong>Correct Answer & Explanation:</strong>
+                        <p>Method: <code>DELETE</code><br>URL: <code>https://reqres.in/api/users/2</code></p>
+                        <p>The method and URL structure were correct (aside from a typo in <code>reqres</code>). The key mistake was including a body. <code>DELETE</code> requests do not require a request body.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="session">
+                <h2 class="session-title">Session 2: Bolt Food API Practice</h2>
+                <p><em>This session uses a fictional API for the Bolt Food app. Assumed base URL is <code>https://api.boltfood.com/v1</code>.</em></p>
+                
+                <div class="qa-card">
+                    <h4>Practice 1: Filtering a List of Restaurants</h4>
+                    <p><strong>Scenario:</strong> You've just opened the app. You want to find all the restaurants that serve <strong>sushi</strong>.</p>
+                    <div class="attempt">
+                        <strong>Your Attempt:</strong>
+                        <pre><code>GET https://api.boltfood.com/v1</code></pre>
+                    </div>
+                    <div class="explanation">
+                        <strong>Correct Answer & Explanation:</strong>
+                        <p>Method: <code>GET</code><br>URL: <code>https://api.boltfood.com/v1/restaurants?cuisine=sushi</code></p>
+                        <p>The <code>GET</code> method was correct. The URL needed two additions: the <code>/restaurants</code> resource path to specify what you're looking for, and the <code>?cuisine=sushi</code> query parameter to filter the list.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accuracy = 0; // From the log file: 0%
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            progressBar.style.width = accuracy + '%';
+            progressText.innerText = accuracy + '% Accuracy';
+        });
+    </script>
+
+</body>
+</html>
