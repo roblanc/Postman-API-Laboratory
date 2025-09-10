@@ -25,9 +25,7 @@
             max-width: 900px; /* Slightly wider */
             margin: 40px auto; /* More vertical margin */
             background: #1a1a1a; /* Darker content background */
-            border: 1px solid #00ffff; /* Cyan border */
             border-radius: 8px; /* Slightly rounded corners */
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 10px rgba(0, 255, 255, 0.2); /* Enhanced cyan glow */
             padding: 30px;
             position: relative;
             z-index: 1; /* Ensure content is above any background effects */
@@ -35,7 +33,6 @@
 
         /* Header */
         header {
-            border-bottom: 1px solid #333; /* Subtle separator */
             padding-bottom: 20px;
             margin-bottom: 30px;
             text-align: center;
@@ -59,10 +56,8 @@
         .progress-tracker {
             margin-bottom: 30px;
             background-color: #1a1a1a;
-            border: 1px solid #00ffff; /* Cyan border */
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2); /* Subtle cyan glow */
         }
         .progress-tracker h2 {
             font-family: 'Space Mono', monospace;
@@ -79,8 +74,6 @@
             height: 25px;
             overflow: hidden;
             position: relative;
-            border: 1px solid #00ffff; /* Cyan border */
-            box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.1); /* Inner glow */
         }
         .progress-bar {
             width: 0%; /* Set by JS */
@@ -93,7 +86,6 @@
             font-weight: bold;
             font-size: 14px;
             font-family: 'Space Mono', monospace;
-            box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Green glow */
         }
         #progressText {
             font-family: 'Space Mono', monospace;
@@ -105,9 +97,7 @@
             margin-top: 20px;
             padding: 15px;
             background-color: #1a1a1a;
-            border: 1px solid #00ffff; /* Cyan border */
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2); /* Subtle cyan glow */
             display: flex;
             flex-wrap: wrap;
             gap: 3px;
@@ -119,21 +109,18 @@
             background-color: #222; /* Base inactive color */
             border-radius: 2px;
             transition: background-color 0.3s ease;
-            box-shadow: 0 0 2px rgba(0, 255, 255, 0.1); /* Subtle glow for each square */
         }
         .day-square.level-0 { background-color: #222; }
-        .day-square.level-1 { background-color: #004d4d; box-shadow: 0 0 4px rgba(0, 255, 255, 0.2); }
-        .day-square.level-2 { background-color: #008080; box-shadow: 0 0 6px rgba(0, 255, 255, 0.3); }
-        .day-square.level-3 { background-color: #00b3b3; box-shadow: 0 0 8px rgba(0, 255, 255, 0.4); }
-        .day-square.level-4 { background-color: #00ffff; box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+        .day-square.level-1 { background-color: #004d4d; }
+        .day-square.level-2 { background-color: #008080; }
+        .day-square.level-3 { background-color: #00b3b3; }
+        .day-square.level-4 { background-color: #00ffff; }
 
         /* Session & QA Cards */
         details {
             margin-bottom: 20px;
-            border: 1px solid #00ffff; /* Cyan border */
             border-radius: 8px;
             background-color: #1a1a1a;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2); /* Subtle cyan glow */
         }
         summary {
             font-family: 'Space Mono', monospace;
@@ -143,15 +130,12 @@
             cursor: pointer;
             outline: none;
             user-select: none;
-            border-bottom: 1px solid #00ffff; /* Cyan border */
             letter-spacing: 1px;
         }
         summary:hover {
             background-color: #2a2a2a;
-            box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.1); /* Inner glow on hover */
         }
         details[open] summary {
-            border-bottom: 1px solid #00ffff;
         }
         .session-content {
             padding: 20px;
@@ -162,11 +146,9 @@
         }
         .qa-card {
             background: #0a0a0a;
-            border: 1px solid #00ffff; /* Cyan border */
             border-radius: 6px;
             padding: 15px;
             margin-bottom: 15px;
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.1); /* Subtle cyan glow */
         }
         .qa-card h4 {
             font-family: 'Space Mono', monospace;
@@ -184,12 +166,10 @@
         }
         .attempt {
             background-color: #330000; /* Dark red for incorrect */
-            border: 1px solid #660000;
             color: #ff6666;
         }
         .explanation {
             background-color: #003300; /* Dark green for correct */
-            border: 1px solid #006600;
             color: #66ff66;
         }
         code {
@@ -199,7 +179,6 @@
             padding: 3px 5px;
             border-radius: 4px;
             font-size: 0.95em; /* Slightly larger */
-            box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); /* Subtle glow */
         }
         pre {
             font-family: 'Space Mono', monospace;
@@ -209,9 +188,7 @@
             border-radius: 6px;
             white-space: pre-wrap;
             word-wrap: break-word;
-            border: 1px solid #00ffff; /* Cyan border for code blocks */
             overflow-x: auto;
-            box-shadow: 0 0 12px rgba(0, 255, 255, 0.5); /* Enhanced glow */
         }
 
         /* Learning Pathway Specific Styles */
@@ -277,7 +254,7 @@
         </div>
 
         <main>
-            <details open>
+            <details>
                 <summary>Session 1: Real-World Application Test (ReqRes API)</summary>
                 <div class="session-content">
                     <p><em>This session used the ReqRes API (<code>https://reqres.in/</code>) to test basic CRUD operations.</em></p>
@@ -362,7 +339,7 @@ Body:
                     </div>
                 </details>
 
-            <details open>
+            <details>
                 <summary>Session 2: Bolt Food API Practice</summary>
                 <div class="session-content">
                     <p><em>This session uses a fictional API for the Bolt Food app. Assumed base URL is <code>https://api.boltfood.com/v1</code>.</em></p>
