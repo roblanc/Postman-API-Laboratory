@@ -119,8 +119,18 @@
         .day-square.level-4 { background-color: #00ffff; }
 
         /* Simple Metrics Display */
+        .stats-and-skills-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 20px; /* Add some top margin to separate from progress bar */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
         .metrics-summary-simple {
-            margin-top: 20px;
+            flex: 1; /* Allow it to grow and shrink */
+            min-width: 280px; /* Minimum width before wrapping */
+            margin-right: 20px; /* Space between stats and skills */
             display: flex;
             flex-direction: column; /* Stack items vertically */
             gap: 5px; /* Smaller gap between lines */
@@ -139,6 +149,11 @@
         .metrics-summary-simple strong {
             color: #00ffff;
             margin-right: 5px;
+        }
+
+        .skills-learned {
+            flex: 1; /* Allow it to grow and shrink */
+            min-width: 280px; /* Minimum width before wrapping */
         }
     </style>
 </head>
@@ -174,7 +189,7 @@
 
                 <div class="skills-learned">
                     <h3>Skills Learned</h3>
-                    <ul id="skillsList" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                    <ul id="skillsList" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px;">
                         <!-- Skills will be populated by JS -->
                     </ul>
                 </div>
