@@ -4,159 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Postman-API-Laboratory</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <!-- Removed retro fonts -->
     <style>
-        /* General Retro Theme */
+        /* GitHub Dark Minimalistic Theme */
         body {
-            font-family: 'VT323', monospace; /* Main retro font */
-            background-color: #000000; /* Deep black */
-            color: #00ff00; /* Classic green text */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: #0d1117; /* GitHub dark background */
+            color: #c9d1d9; /* Light text */
             margin: 0;
             padding: 20px;
-            text-shadow: 0 0 5px #00ff00; /* Subtle glow */
-            line-height: 1.4;
-            font-size: 18px;
+            line-height: 1.5;
+            font-size: 16px;
         }
         .container {
             max-width: 800px;
             margin: auto;
-            background: #1a1a1a; /* Darker background for content */
-            border: 2px solid #00ff00; /* Green border */
-            box-shadow: 0 0 15px #00ff00; /* Stronger glow */
-            border-radius: 0; /* Sharp corners */
+            background: #161b22; /* Slightly lighter dark background for content */
+            border: 1px solid #30363d; /* Subtle border */
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             padding: 20px;
-            position: relative;
-            overflow: hidden; /* For scanlines */
         }
-        .container::before { /* Scanline effect */
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px);
-            background-size: 100% 2px;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Header */
         header {
-            border-bottom: 2px dashed #00ff00; /* Dashed retro line */
+            border-bottom: 1px solid #30363d;
             padding-bottom: 15px;
             margin-bottom: 20px;
             text-align: center;
         }
         header h1 {
-            font-family: 'Press Start 2P', cursive; /* Pixelated title font */
             font-size: 28px;
             margin: 0;
-            color: #00ffff; /* Cyan for title */
-            text-shadow: 0 0 10px #00ffff;
+            color: #58a6ff; /* GitHub blue for main title */
         }
         header p {
             margin: 5px 0 0;
-            color: #00ff00;
-            font-size: 16px;
+            color: #8b949e;
+            font-size: 14px;
         }
 
         /* Progress Tracker */
         .progress-tracker {
             margin-bottom: 25px;
-            border: 1px solid #00ff00;
-            padding: 10px;
-            box-shadow: 0 0 8px #00ff00;
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 15px;
         }
         .progress-tracker h2 {
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 10px;
-            color: #ffff00; /* Yellow for section titles */
-            text-shadow: 0 0 5px #ffff00;
+            color: #c9d1d9;
         }
         .progress-bar-container {
             width: 100%;
-            background-color: #333333;
-            border: 1px solid #00ff00;
-            height: 25px;
-            position: relative;
+            background-color: #30363d;
+            border-radius: 4px;
+            height: 20px;
+            overflow: hidden;
         }
         .progress-bar {
             width: 0%; /* Set by JS */
             height: 100%;
-            background-color: #00ffff; /* Cyan for progress */
+            background-color: #238636; /* GitHub green for progress */
+            border-radius: 4px;
             transition: width 0.5s ease-in-out;
             text-align: center;
-            line-height: 25px;
-            color: #000000;
+            line-height: 20px;
+            color: white;
             font-weight: bold;
-            text-shadow: none;
+            font-size: 12px;
         }
         #progressText {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 14px;
+            font-family: inherit;
         }
 
         /* Session & QA Cards */
         .session {
             margin-bottom: 30px;
-            border-top: 2px dashed #00ff00;
+            border-top: 1px solid #30363d;
             padding-top: 20px;
         }
         .session-title {
-            font-family: 'Press Start 2P', cursive;
             font-size: 22px;
-            color: #ffff00;
-            text-shadow: 0 0 5px #ffff00;
+            color: #58a6ff;
             margin-bottom: 15px;
         }
         .qa-card {
-            background: #0a0a0a;
-            border: 1px solid #00ff00;
-            border-radius: 0;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
             padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 8px rgba(0,255,0,0.5);
+            margin-bottom: 15px;
         }
         .qa-card h4 {
-            font-family: 'Press Start 2P', cursive;
             font-size: 16px;
             margin: 0 0 10px;
-            color: #00ffff;
-            text-shadow: 0 0 5px #00ffff;
+            color: #c9d1d9;
         }
         .attempt, .explanation {
             padding: 10px;
-            border-radius: 0;
+            border-radius: 4px;
             margin-top: 10px;
-            border: 1px dashed #00ff00;
+            font-size: 14px;
         }
         .attempt {
-            background-color: #330000; /* Dark red for incorrect */
-            color: #ff6666;
+            background-color: #301a1a; /* Subtle red for incorrect */
+            border: 1px solid #6a2a2a;
+            color: #ff7b72;
         }
         .explanation {
-            background-color: #003300; /* Dark green for correct */
-            color: #66ff66;
+            background-color: #1a301a; /* Subtle green for correct */
+            border: 1px solid #2a6a2a;
+            color: #56d364;
         }
         code {
-            font-family: 'VT323', monospace;
-            background: #000000;
-            color: #00ffff;
+            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+            background: rgba(110,118,129,0.4);
+            color: #c9d1d9;
             padding: 2px 4px;
-            border-radius: 2px;
+            border-radius: 4px;
             font-size: 0.9em;
-            text-shadow: none;
         }
         pre {
-            background: #000000;
-            color: #00ff00;
+            background: #010409;
+            color: #c9d1d9;
             padding: 10px;
-            border-radius: 2px;
+            border-radius: 4px;
             white-space: pre-wrap;
             word-wrap: break-word;
-            border: 1px solid #00ff00;
-            text-shadow: none;
+            border: 1px solid #30363d;
+            overflow-x: auto;
         }
     </style>
 </head>
