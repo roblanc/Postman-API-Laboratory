@@ -238,6 +238,24 @@
             <div class="progress-bar-container">
                 <div class="progress-bar" id="progressBar"><span id="progressText"></span></div>
             </div>
+
+            <div class="metrics-summary" style="margin-top: 20px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 15px;">
+                <p><strong>Mistakes Made:</strong> <span id="mistakesMade">0</span></p>
+                <p><strong>Words Read:</strong> <span id="wordsRead">0</span></p>
+                <p><strong>Sessions Followed:</strong> <span id="sessionsFollowed">0</span></p>
+            </div>
+
+            <div class="programmer-status" style="text-align: center; margin-top: 20px;">
+                <h3>Current Programmer Status: <span id="programmerStatus" style="color: #00ffff;">Initiate</span></h3>
+            </div>
+
+            <div class="skills-learned" style="margin-top: 30px;">
+                <h3>Skills Learned (SEO-Friendly)</h3>
+                <ul id="skillsList" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                    <!-- Skills will be populated by JS -->
+                </ul>
+            </div>
+
             <div class="contribution-graph">
                 <!-- Contribution squares will be generated here by JS -->
             </div>
@@ -397,6 +415,49 @@ Body:
             
             progressBar.style.width = accuracy + '%';
             progressText.innerText = accuracy + '% Accuracy';
+
+            // New Metrics
+            const mistakesMade = 4; // Placeholder value
+            const wordsRead = 2500; // Placeholder value (approximate from content)
+            const sessionsFollowed = 2; // Placeholder value (from details tags)
+
+            document.getElementById('mistakesMade').innerText = mistakesMade;
+            document.getElementById('wordsRead').innerText = wordsRead;
+            document.getElementById('sessionsFollowed').innerText = sessionsFollowed;
+
+            // Programmer Status Ranking
+            let programmerStatus = "Initiate";
+            if (accuracy >= 25) {
+                programmerStatus = "Apprentice";
+            }
+            if (accuracy >= 50) {
+                programmerStatus = "Journeyman";
+            }
+            if (accuracy >= 75) {
+                programmerStatus = "Adept";
+            }
+            if (accuracy >= 90) {
+                programmerStatus = "Master";
+            }
+            document.getElementById('programmerStatus').innerText = programmerStatus;
+
+            // SEO-Friendly Skills Learned
+            const seoSkills = [
+                "API Testing", "RESTful APIs", "HTTP Methods (GET, POST, PUT, DELETE)",
+                "JSON Data Handling", "Postman", "API Automation", "Software Quality Assurance",
+                "Web Development Fundamentals", "Debugging", "Problem Solving"
+            ];
+            const skillsList = document.getElementById('skillsList');
+            seoSkills.forEach(skill => {
+                const li = document.createElement('li');
+                li.style.backgroundColor = '#004d4d'; // Dark cyan background
+                li.style.padding = '5px 10px';
+                li.style.borderRadius = '4px';
+                li.style.fontSize = '0.9em';
+                li.style.whiteSpace = 'nowrap';
+                li.innerText = skill;
+                skillsList.appendChild(li);
+            });
 
             // Contribution Graph Data (Dummy for now)
             const activityData = {
