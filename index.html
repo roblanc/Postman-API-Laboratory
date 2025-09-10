@@ -1,234 +1,308 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Postman-API-Laboratory</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧪</text></svg>">
-    <style>
-        /* GitHub Dark Minimalistic Theme */
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            background-color: #0d1117; /* GitHub dark background */
-            color: #c9d1d9; /* Light text */
-            margin: 0;
-            padding: 20px;
-            line-height: 1.5;
-            font-size: 16px;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #161b22; /* Slightly lighter dark background for content */
-            border: 1px solid #30363d; /* Subtle border */
-            border-radius: 6px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            padding: 20px;
-        }
-        header {
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 28px;
-            margin: 0;
-            color: #58a6ff; /* GitHub blue for main title */
-        }
-        header p {
-            margin: 5px 0 0;
-            color: #8b949e;
-            font-size: 14px;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Postman-API-Laboratory</title>
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧪</text></svg>"
+        />
+        <style>
+            /* GitHub Dark Minimalistic Theme */
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    Roboto,
+                    Helvetica,
+                    Arial,
+                    sans-serif,
+                    "Apple Color Emoji",
+                    "Segoe UI Emoji",
+                    "Segoe UI Symbol";
+                background-color: #0d1117; /* GitHub dark background */
+                color: #c9d1d9; /* Light text */
+                margin: 0;
+                padding: 20px;
+                line-height: 1.5;
+                font-size: 16px;
+            }
+            .container {
+                max-width: 800px;
+                margin: auto;
+                background: #161b22; /* Slightly lighter dark background for content */
+                border: 1px solid #30363d; /* Subtle border */
+                border-radius: 6px;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+                padding: 20px;
+            }
+            header {
+                border-bottom: 1px solid #30363d;
+                padding-bottom: 15px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            header h1 {
+                font-size: 28px;
+                margin: 0;
+                color: #58a6ff; /* GitHub blue for main title */
+            }
+            header p {
+                margin: 5px 0 0;
+                color: #8b949e;
+                font-size: 14px;
+            }
 
-        /* Progress Tracker */
-        .progress-tracker {
-            margin-bottom: 25px;
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            padding: 15px;
-        }
-        .progress-tracker h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #c9d1d9;
-        }
-        .progress-bar-container {
-            width: 100%;
-            background-color: #30363d;
-            border-radius: 4px;
-            height: 20px;
-            overflow: hidden;
-        }
-        .progress-bar {
-            width: 0%; /* Set by JS */
-            height: 100%;
-            background-color: #238636; /* GitHub green for progress */
-            border-radius: 4px;
-            transition: width 0.5s ease-in-out;
-            text-align: center;
-            line-height: 20px;
-            color: white;
-            font-weight: bold;
-            font-size: 12px;
-        }
-        #progressText {
-            font-family: inherit;
-        }
+            /* Progress Tracker */
+            .progress-tracker {
+                margin-bottom: 25px;
+                background-color: #0d1117;
+                border: 1px solid #30363d;
+                border-radius: 6px;
+                padding: 15px;
+            }
+            .progress-tracker h2 {
+                font-size: 18px;
+                margin-bottom: 10px;
+                color: #c9d1d9;
+            }
+            .progress-bar-container {
+                width: 100%;
+                background-color: #30363d;
+                border-radius: 4px;
+                height: 20px;
+                overflow: hidden;
+            }
+            .progress-bar {
+                width: 0%; /* Set by JS */
+                height: 100%;
+                background-color: #238636; /* GitHub green for progress */
+                border-radius: 4px;
+                transition: width 0.5s ease-in-out;
+                text-align: center;
+                line-height: 20px;
+                color: white;
+                font-weight: bold;
+                font-size: 12px;
+            }
+            #progressText {
+                font-family: inherit;
+            }
 
-        /* Session & QA Cards */
-        details {
-            margin-bottom: 15px;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            background-color: #161b22;
-        }
-        summary {
-            font-size: 20px;
-            color: #58a6ff;
-            padding: 15px;
-            cursor: pointer;
-            outline: none;
-            user-select: none;
-            border-bottom: 1px solid #30363d;
-        }
-        summary:hover {
-            background-color: #1f242c;
-        }
-        details[open] summary {
-            border-bottom: 1px solid #30363d;
-        }
-        .session-content {
-            padding: 15px;
-        }
-        .session-content p {
-            margin-top: 0;
-            color: #8b949e;
-        }
-        .qa-card {
-            background: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-        .qa-card h4 {
-            font-size: 16px;
-            margin: 0 0 10px;
-            color: #c9d1d9;
-        }
-        .attempt, .explanation {
-            padding: 10px;
-            border-radius: 4px;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-        .attempt {
-            background-color: #301a1a; /* Subtle red for incorrect */
-            border: 1px solid #6a2a2a;
-            color: #ff7b72;
-        }
-        .explanation {
-            background-color: #1a301a; /* Subtle green for correct */
-            border: 1px solid #2a6a2a;
-            color: #56d364;
-        }
-        code {
-            font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
-            background: rgba(110,118,129,0.4);
-            color: #c9d1d9;
-            padding: 2px 4px;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-        pre {
-            background: #010409;
-            color: #c9d1d9;
-            padding: 10px;
-            border-radius: 4px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            border: 1px solid #30363d;
-            overflow-x: auto;
-        }
+            /* Session & QA Cards */
+            details {
+                margin-bottom: 15px;
+                border: 1px solid #30363d;
+                border-radius: 6px;
+                background-color: #161b22;
+            }
+            summary {
+                font-size: 20px;
+                color: #58a6ff;
+                padding: 15px;
+                cursor: pointer;
+                outline: none;
+                user-select: none;
+                border-bottom: 1px solid #30363d;
+            }
+            summary:hover {
+                background-color: #1f242c;
+            }
+            details[open] summary {
+                border-bottom: 1px solid #30363d;
+            }
+            .session-content {
+                padding: 15px;
+            }
+            .session-content p {
+                margin-top: 0;
+                color: #8b949e;
+            }
+            .qa-card {
+                background: #0d1117;
+                border: 1px solid #30363d;
+                border-radius: 6px;
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            .qa-card h4 {
+                font-size: 16px;
+                margin: 0 0 10px;
+                color: #c9d1d9;
+            }
+            .attempt,
+            .explanation {
+                padding: 10px;
+                border-radius: 4px;
+                margin-top: 10px;
+                font-size: 14px;
+            }
+            .attempt {
+                background-color: #301a1a; /* Subtle red for incorrect */
+                border: 1px solid #6a2a2a;
+                color: #ff7b72;
+            }
+            .explanation {
+                background-color: #1a301a; /* Subtle green for correct */
+                border: 1px solid #2a6a2a;
+                color: #56d364;
+            }
+            code {
+                font-family:
+                    ui-monospace,
+                    SFMono-Regular,
+                    SF Mono,
+                    Menlo,
+                    Consolas,
+                    Liberation Mono,
+                    monospace;
+                background: rgba(110, 118, 129, 0.4);
+                color: #c9d1d9;
+                padding: 2px 4px;
+                border-radius: 4px;
+                font-size: 0.9em;
+            }
+            pre {
+                background: #010409;
+                color: #c9d1d9;
+                padding: 10px;
+                border-radius: 4px;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                border: 1px solid #30363d;
+                overflow-x: auto;
+            }
 
-        /* Learning Pathway Specific Styles */
-        .learning-pathway ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .learning-pathway li {
-            margin-bottom: 5px;
-        }
-        .learning-pathway h3, .learning-pathway h4 {
-            color: #c9d1d9;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
+            /* Learning Pathway Specific Styles */
+            .learning-pathway ul {
+                list-style: none;
+                padding-left: 0;
+            }
+            .learning-pathway li {
+                margin-bottom: 5px;
+            }
+            .learning-pathway h3,
+            .learning-pathway h4 {
+                color: #c9d1d9;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Postman-API-Laboratory</h1>
+                <p>
+                    Robert's project for experimentation and learning in API
+                    testing and software development.
+                </p>
+            </header>
 
-    <div class="container">
-        <header>
-            <h1>Postman-API-Laboratory</h1>
-            <p>Robert's project for experimentation and learning in API testing and software development.</p>
-        </header>
-
-        <div class="progress-tracker">
-            <h2>Overall Progress</h2>
-            <div class="progress-bar-container">
-                <div class="progress-bar" id="progressBar"><span id="progressText"></span></div>
-            </div>
-        </div>
-
-        <main>
-            <details open>
-                <summary>Session 1: Real-World Application Test (ReqRes API)</summary>
-                <div class="session-content">
-                    <p><em>This session used the ReqRes API (<code>https://reqres.in/</code>) to test basic CRUD operations.</em></p>
-
-                    <div class="qa-card">
-                        <h4>Test 1: Reading Data (GET)</h4>
-                        <p><strong>Scenario:</strong> You are working on a web application and need to fetch the data for a single user whose ID is <code>2</code> to display on their profile page.</p>
-                        <div class="attempt">
-                            <strong>Your Attempt:</strong>
-                            <pre><code>GET https://reqres.in/useriD=1</code></pre>
-                        </div>
-                        <div class="explanation">
-                            <strong>Correct Answer & Explanation:</strong>
-                            <p>Method: <code>GET</code><br>URL: <code>https://reqres.in/api/users/2</code></p>
-                            <p>The <code>GET</code> method was correct. The URL needed correction: for a single resource, the ID (<code>2</code>) should be part of the path. The path was also missing the <code>/api/</code> segment. Query parameters (<code>?</code>) are typically for filtering lists, not fetching single items by ID.</p>
-                        </div>
+            <div class="progress-tracker">
+                <h2>Overall Progress</h2>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar">
+                        <span id="progressText"></span>
                     </div>
+                </div>
+            </div>
 
-                    <div class="qa-card">
-                        <h4>Test 2: Creating Data (POST)</h4>
-                        <p><strong>Scenario:</strong> A new user, 'Morpheus', has just signed up. His job title is 'leader'. You need to create a new record for him in the system.</p>
-                        <div class="attempt">
-                            <strong>Your Attempt:</strong>
-                            <pre><code>methd = get, url is regres.in/api/users and json body is</code></pre>
+            <main>
+                <details open>
+                    <summary>
+                        Session 1: Real-World Application Test (ReqRes API)
+                    </summary>
+                    <div class="session-content">
+                        <p>
+                            <em
+                                >This session used the ReqRes API
+                                (<code>https://reqres.in/</code>) to test basic
+                                CRUD operations.</em
+                            >
+                        </p>
+
+                        <div class="qa-card">
+                            <h4>Test 1: Reading Data (GET)</h4>
+                            <p>
+                                <strong>Scenario:</strong> You are working on a
+                                web application and need to fetch the data for a
+                                single user whose ID is <code>2</code> to
+                                display on their profile page.
+                            </p>
+                            <div class="attempt">
+                                <strong>Your Attempt:</strong>
+                                <pre><code>GET https://reqres.in/useriD=1</code></pre>
+                            </div>
+                            <div class="explanation">
+                                <strong>Correct Answer & Explanation:</strong>
+                                <p>
+                                    Method: <code>GET</code><br />URL:
+                                    <code>https://reqres.in/api/users/2</code>
+                                </p>
+                                <p>
+                                    The <code>GET</code> method was correct. The
+                                    URL needed correction: for a single
+                                    resource, the ID (<code>2</code>) should be
+                                    part of the path. The path was also missing
+                                    the <code>/api/</code> segment. Query
+                                    parameters (<code>?</code>) are typically
+                                    for filtering lists, not fetching single
+                                    items by ID.
+                                </p>
+                            </div>
                         </div>
-                        <div class="explanation">
-                            <strong>Correct Answer & Explanation:</strong>
-                            <p>Method: <code>POST</code><br>URL: <code>https://reqres.in/api/users</code></p>
-                            <p>Body (Raw JSON):</p>
-                            <pre><code>{
+
+                        <div class="qa-card">
+                            <h4>Test 2: Creating Data (POST)</h4>
+                            <p>
+                                <strong>Scenario:</strong> A new user,
+                                'Morpheus', has just signed up. His job title is
+                                'leader'. You need to create a new record for
+                                him in the system.
+                            </p>
+                            <div class="attempt">
+                                <strong>Your Attempt:</strong>
+                                <pre><code>methd = get, url is regres.in/api/users and json body is</code></pre>
+                            </div>
+                            <div class="explanation">
+                                <strong>Correct Answer & Explanation:</strong>
+                                <p>
+                                    Method: <code>POST</code><br />URL:
+                                    <code>https://reqres.in/api/users</code>
+                                </p>
+                                <p>Body (Raw JSON):</p>
+                                <pre><code>{
     "name": "morpheus",
     "job": "leader"
 }</code></pre>
-                            <p>The method to create new data is <code>POST</code>. The URL had a typo (<code>regres</code> instead of <code>reqres</code>). A <code>POST</code> request also requires a JSON body containing the data for the new user.</p>
+                                <p>
+                                    The method to create new data is
+                                    <code>POST</code>. The URL had a typo (<code
+                                        >regres</code
+                                    >
+                                    instead of <code>reqres</code>). A
+                                    <code>POST</code> request also requires a
+                                    JSON body containing the data for the new
+                                    user.
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="qa-card">
-                        <h4>Test 3: Updating Data (PUT)</h4>
-                        <p><strong>Scenario:</strong> Morpheus has been promoted! You need to update his record (user ID <code>2</code>) to change his job title to 'zion resident'.</p>
-                        <div class="attempt">
-                            <strong>Your Attempt:</strong>
-                            <pre><code>POST https://regres.in/api/users/2
+                        <div class="qa-card">
+                            <h4>Test 3: Updating Data (PUT)</h4>
+                            <p>
+                                <strong>Scenario:</strong> Morpheus has been
+                                promoted! You need to update his record (user ID
+                                <code>2</code>) to change his job title to 'zion
+                                resident'.
+                            </p>
+                            <div class="attempt">
+                                <strong>Your Attempt:</strong>
+                                <pre><code>POST https://regres.in/api/users/2
 
 Body:
 {
@@ -236,111 +310,203 @@ Body:
   "Job": "zion rezident",
   "userId": 2
 }</code></pre>
-                        </div>
-                        <div class="explanation">
-                            <strong>Correct Answer & Explanation:</strong>
-                            <p>Method: <code>PUT</code><br>URL: <code>https://reqres.in/api/users/2</code></p>
-                            <p>Body (Raw JSON):</p>
-                            <pre><code>{
+                            </div>
+                            <div class="explanation">
+                                <strong>Correct Answer & Explanation:</strong>
+                                <p>
+                                    Method: <code>PUT</code><br />URL:
+                                    <code>https://reqres.in/api/users/2</code>
+                                </p>
+                                <p>Body (Raw JSON):</p>
+                                <pre><code>{
     "name": "morpheus",
     "job": "zion resident"
 }</code></pre>
-                            <p>The method to update existing data is <code>PUT</code>. The URL had a typo. The JSON body should use lowercase keys (<code>name</code>, <code>job</code>) as expected by the API, and the redundant <code>userId</code> is not needed.</p>
+                                <p>
+                                    The method to update existing data is
+                                    <code>PUT</code>. The URL had a typo. The
+                                    JSON body should use lowercase keys
+                                    (<code>name</code>, <code>job</code>) as
+                                    expected by the API, and the redundant
+                                    <code>userId</code> is not needed.
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="qa-card">
-                        <h4>Test 4: Deleting Data (DELETE)</h4>
-                        <p><strong>Scenario:</strong> A user account (ID <code>2</code>) needs to be deleted.</p>
-                        <div class="attempt">
-                            <strong>Your Attempt:</strong>
-                            <pre><code>DELETE https://regres.in/api/users/2
+                        <div class="qa-card">
+                            <h4>Test 4: Deleting Data (DELETE)</h4>
+                            <p>
+                                <strong>Scenario:</strong> A user account (ID
+                                <code>2</code>) needs to be deleted.
+                            </p>
+                            <div class="attempt">
+                                <strong>Your Attempt:</strong>
+                                <pre><code>DELETE https://regres.in/api/users/2
 
 Body:
 {
   "Name": "morpheus",
   "Job": "Zion resident"
 }</code></pre>
-                        </div>
-                        <div class="explanation">
-                            <strong>Correct Answer & Explanation:</strong>
-                            <p>Method: <code>DELETE</code><br>URL: <code>https://reqres.in/api/users/2</code></p>
-                            <p>The method and URL structure were correct (aside from a typo in <code>reqres</code>). The key mistake was including a body. <code>DELETE</code> requests do not require a request body.</p>
-                        </div>
-                    </div>
-                </div>
-            </details>
-
-            <details open>
-                <summary>Session 2: Bolt Food API Practice</summary>
-                <div class="session-content">
-                    <p><em>This session uses a fictional API for the Bolt Food app. Assumed base URL is <code>https://api.boltfood.com/v1</code>.</em></p>
-                    
-                    <div class="qa-card">
-                        <h4>Practice 1: Filtering a List of Restaurants</h4>
-                        <p><strong>Scenario:</strong> You've just opened the app. You want to find all the restaurants that serve <strong>sushi</strong>.</p>
-                        <div class="attempt">
-                            <strong>Your Attempt:</strong>
-                            <pre><code>GET https://api.boltfood.com/v1</code></pre>
-                        </div>
-                        <div class="explanation">
-                            <strong>Correct Answer & Explanation:</strong>
-                            <p>Method: <code>GET</code><br>URL: <code>https://api.boltfood.com/v1/restaurants?cuisine=sushi</code></p>
-                            <p>The <code>GET</code> method was correct. The URL needed two additions: the <code>/restaurants</code> resource path to specify what you're looking for, and the <code>?cuisine=sushi</code> query parameter to filter the list.</p>
+                            </div>
+                            <div class="explanation">
+                                <strong>Correct Answer & Explanation:</strong>
+                                <p>
+                                    Method: <code>DELETE</code><br />URL:
+                                    <code>https://reqres.in/api/users/2</code>
+                                </p>
+                                <p>
+                                    The method and URL structure were correct
+                                    (aside from a typo in <code>reqres</code>).
+                                    The key mistake was including a body.
+                                    <code>DELETE</code> requests do not require
+                                    a request body.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </details>
+                </details>
 
-            <details open class="learning-pathway">
-                <summary><h2>Your Learning Pathway: Where You Are & What's Next</h2></summary>
-                <div class="session-content">
-                    <h3>Where You Are At: Fundamentals Mastered</h3>
-                    <p>You have successfully grasped the core HTTP methods (GET, POST, PUT, DELETE) and understand how to construct basic API requests. You're comfortable with URLs, endpoints, sending JSON bodies, and using query parameters to filter data. You're currently practicing these foundational skills in practical, real-world scenarios.</p>
+                <details open>
+                    <summary>Session 2: Bolt Food API Practice</summary>
+                    <div class="session-content">
+                        <p>
+                            <em
+                                >This session uses a fictional API for the Bolt
+                                Food app. Assumed base URL is
+                                <code>https://api.boltfood.com/v1</code>.</em
+                            >
+                        </p>
 
-                    <h3>What's Next: Intermediate & Advanced Concepts</h3>
-                    <p>To continue your journey towards Postman mastery and API testing expertise, here's a suggested pathway:</p>
-                    
-                    <h4>Phase 1: Fundamentals (In Progress)</h4>
-                    <ul>
-                        <li>HTTP Methods (GET, POST, PUT, DELETE)</li>
-                        <li>URLs & Endpoints (Resources, IDs, Paths)</li>
-                        <li>Request Bodies (JSON)</li>
-                        <li>Query Parameters</li>
-                        <li>Response (Status Codes, Headers, Body)</li>
-                    </ul>
+                        <div class="qa-card">
+                            <h4>Practice 1: Filtering a List of Restaurants</h4>
+                            <p>
+                                <strong>Scenario:</strong> You've just opened
+                                the app. You want to find all the restaurants
+                                that serve <strong>sushi</strong>.
+                            </p>
+                            <div class="attempt">
+                                <strong>Your Attempt:</strong>
+                                <pre><code>GET https://api.boltfood.com/v1</code></pre>
+                            </div>
+                            <div class="explanation">
+                                <strong>Correct Answer & Explanation:</strong>
+                                <p>
+                                    Method: <code>GET</code><br />URL:
+                                    <code
+                                        >https://api.boltfood.com/v1/restaurants?cuisine=sushi</code
+                                    >
+                                </p>
+                                <p>
+                                    The <code>GET</code> method was correct. The
+                                    URL needed two additions: the
+                                    <code>/restaurants</code> resource path to
+                                    specify what you're looking for, and the
+                                    <code>?cuisine=sushi</code> query parameter
+                                    to filter the list.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </details>
 
-                    <h4>Phase 2: Intermediate API Interaction</h4>
-                    <ul>
-                        <li><strong>API Authentication:</strong> Understanding and implementing various authentication methods (API Keys, Basic Auth, Bearer Tokens, OAuth 2.0).</li>
-                        <li><strong>Headers:</strong> Working with custom and common HTTP headers.</li>
-                        <li><strong>Variables:</strong> Using environment, collection, and global variables for dynamic requests.</li>
-                        <li><strong>Pre-request Scripts & Test Scripts:</strong> Writing JavaScript to automate request setup and validate responses.</li>
-                        <li><strong>Collections & Folders:</strong> Organizing your requests for better management.</li>
-                    </ul>
+                <details open class="learning-pathway">
+                    <summary>
+                        <h4>
+                            Your Learning Pathway: Where You Are & What's Next
+                        </h4>
+                    </summary>
+                    <div class="session-content">
+                        <h3>Where You Are At: Fundamentals Mastered</h3>
+                        <p>
+                            You have successfully grasped the core HTTP methods
+                            (GET, POST, PUT, DELETE) and understand how to
+                            construct basic API requests. You're comfortable
+                            with URLs, endpoints, sending JSON bodies, and using
+                            query parameters to filter data. You're currently
+                            practicing these foundational skills in practical,
+                            real-world scenarios.
+                        </p>
 
-                    <h4>Phase 3: Automation & Advanced Testing</h4>
-                    <ul>
-                        <li><strong>Collection Runner:</strong> Automating sequences of requests for testing.</li>
-                        <li><strong>Newman:</strong> Running Postman collections from the command line for CI/CD integration.</li>
-                        <li><strong>Mock Servers:</strong> Simulating API responses for development and testing.</li>
-                        <li><strong>API Monitoring:</strong> Setting up monitors to track API performance and uptime.</li>
-                    </ul>
-                </div>
-            </details>
-        </main>
-    </div>
+                        <h3>What's Next: Intermediate & Advanced Concepts</h3>
+                        <p>
+                            To continue your journey towards Postman mastery and
+                            API testing expertise, here's a suggested pathway:
+                        </p>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const accuracy = 0; // From the log file: 0%
-            const progressBar = document.getElementById('progressBar');
-            const progressText = document.getElementById('progressText');
-            
-            progressBar.style.width = accuracy + '%';
-            progressText.innerText = accuracy + '% Accuracy';
-        });
-    </script>
+                        <h4>Phase 1: Fundamentals (In Progress)</h4>
+                        <ul>
+                            <li>HTTP Methods (GET, POST, PUT, DELETE)</li>
+                            <li>URLs & Endpoints (Resources, IDs, Paths)</li>
+                            <li>Request Bodies (JSON)</li>
+                            <li>Query Parameters</li>
+                            <li>Response (Status Codes, Headers, Body)</li>
+                        </ul>
 
-</body>
+                        <h4>Phase 2: Intermediate API Interaction</h4>
+                        <ul>
+                            <li>
+                                <strong>API Authentication:</strong>
+                                Understanding and implementing various
+                                authentication methods (API Keys, Basic Auth,
+                                Bearer Tokens, OAuth 2.0).
+                            </li>
+                            <li>
+                                <strong>Headers:</strong> Working with custom
+                                and common HTTP headers.
+                            </li>
+                            <li>
+                                <strong>Variables:</strong> Using environment,
+                                collection, and global variables for dynamic
+                                requests.
+                            </li>
+                            <li>
+                                <strong
+                                    >Pre-request Scripts & Test Scripts:</strong
+                                >
+                                Writing JavaScript to automate request setup and
+                                validate responses.
+                            </li>
+                            <li>
+                                <strong>Collections & Folders:</strong>
+                                Organizing your requests for better management.
+                            </li>
+                        </ul>
+
+                        <h4>Phase 3: Automation & Advanced Testing</h4>
+                        <ul>
+                            <li>
+                                <strong>Collection Runner:</strong> Automating
+                                sequences of requests for testing.
+                            </li>
+                            <li>
+                                <strong>Newman:</strong> Running Postman
+                                collections from the command line for CI/CD
+                                integration.
+                            </li>
+                            <li>
+                                <strong>Mock Servers:</strong> Simulating API
+                                responses for development and testing.
+                            </li>
+                            <li>
+                                <strong>API Monitoring:</strong> Setting up
+                                monitors to track API performance and uptime.
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+            </main>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const accuracy = 0; // From the log file: 0%
+                const progressBar = document.getElementById("progressBar");
+                const progressText = document.getElementById("progressText");
+
+                progressBar.style.width = accuracy + "%";
+                progressText.innerText = accuracy + "% Accuracy";
+            });
+        </script>
+    </body>
 </html>
