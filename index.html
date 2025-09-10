@@ -166,6 +166,7 @@
             <div class="metrics-summary-simple">
                 <p><span class="metric-icon-small" id="iconMistakes"></span><strong>Mistakes Made:</strong> <span id="mistakesMade">0</span></p>
                 <p><span class="metric-icon-small" id="iconWords"></span><strong>Words Read:</strong> <span id="wordsRead">0</span></p>
+                <p><span class="metric-icon-small" id="iconCharacters"></span><strong>Characters Typed:</strong> <span id="charactersTyped">0</span></p>
                 <p><span class="metric-icon-small" id="iconSessions"></span><strong>Sessions Followed:</strong> <span id="sessionsFollowed">0</span></p>
                 <p><span class="metric-icon-small" id="iconStatus"></span><strong>Programmer Status:</strong> <span id="programmerStatus" style="color: #00ffff;">Initiate</span></p>
             </div>
@@ -336,10 +337,12 @@ Body:
             // New Metrics
             const mistakesMade = 4; // Placeholder value
             const wordsRead = 2500; // Placeholder value (approximate from content)
+            const charactersTyped = 15000; // Placeholder value
             const sessionsFollowed = 2; // Placeholder value (from details tags)
 
             document.getElementById('mistakesMade').innerText = mistakesMade;
             document.getElementById('wordsRead').innerText = wordsRead;
+            document.getElementById('charactersTyped').innerText = charactersTyped;
             document.getElementById('sessionsFollowed').innerText = sessionsFollowed;
 
             // Programmer Status Ranking
