@@ -3,107 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Postman Learning Dashboard</title>
+    <title>Postman-API-Laboratory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <style>
+        /* General Retro Theme */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f0f2f5;
-            color: #1c1e21;
+            font-family: 'VT323', monospace; /* Main retro font */
+            background-color: #000000; /* Deep black */
+            color: #00ff00; /* Classic green text */
             margin: 0;
             padding: 20px;
+            text-shadow: 0 0 5px #00ff00; /* Subtle glow */
+            line-height: 1.4;
+            font-size: 18px;
         }
         .container {
             max-width: 800px;
             margin: auto;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: #1a1a1a; /* Darker background for content */
+            border: 2px solid #00ff00; /* Green border */
+            box-shadow: 0 0 15px #00ff00; /* Stronger glow */
+            border-radius: 0; /* Sharp corners */
             padding: 20px;
+            position: relative;
+            overflow: hidden; /* For scanlines */
         }
+        .container::before { /* Scanline effect */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 255, 0, 0.1) 1px, transparent 1px);
+            background-size: 100% 2px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Header */
         header {
-            border-bottom: 1px solid #dddfe2;
-            padding-bottom: 20px;
+            border-bottom: 2px dashed #00ff00; /* Dashed retro line */
+            padding-bottom: 15px;
             margin-bottom: 20px;
+            text-align: center;
         }
         header h1 {
-            font-size: 24px;
+            font-family: 'Press Start 2P', cursive; /* Pixelated title font */
+            font-size: 28px;
             margin: 0;
+            color: #00ffff; /* Cyan for title */
+            text-shadow: 0 0 10px #00ffff;
         }
         header p {
             margin: 5px 0 0;
-            color: #606770;
+            color: #00ff00;
+            font-size: 16px;
         }
+
+        /* Progress Tracker */
         .progress-tracker {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #00ff00;
+            padding: 10px;
+            box-shadow: 0 0 8px #00ff00;
         }
         .progress-tracker h2 {
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 10px;
+            color: #ffff00; /* Yellow for section titles */
+            text-shadow: 0 0 5px #ffff00;
         }
         .progress-bar-container {
             width: 100%;
-            background-color: #e9ebee;
-            border-radius: 4px;
-            height: 20px;
+            background-color: #333333;
+            border: 1px solid #00ff00;
+            height: 25px;
+            position: relative;
         }
         .progress-bar {
             width: 0%; /* Set by JS */
             height: 100%;
-            background-color: #42b72a;
-            border-radius: 4px;
+            background-color: #00ffff; /* Cyan for progress */
             transition: width 0.5s ease-in-out;
             text-align: center;
-            line-height: 20px;
-            color: white;
+            line-height: 25px;
+            color: #000000;
             font-weight: bold;
+            text-shadow: none;
         }
+        #progressText {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+        }
+
+        /* Session & QA Cards */
         .session {
             margin-bottom: 30px;
+            border-top: 2px dashed #00ff00;
+            padding-top: 20px;
         }
         .session-title {
-            font-size: 20px;
-            color: #1c1e21;
-            border-bottom: 1px solid #dddfe2;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .qa-card {
-            background: #f7f8fa;
-            border: 1px solid #dddfe2;
-            border-radius: 8px;
-            padding: 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 22px;
+            color: #ffff00;
+            text-shadow: 0 0 5px #ffff00;
             margin-bottom: 15px;
         }
+        .qa-card {
+            background: #0a0a0a;
+            border: 1px solid #00ff00;
+            border-radius: 0;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 8px rgba(0,255,0,0.5);
+        }
         .qa-card h4 {
+            font-family: 'Press Start 2P', cursive;
             font-size: 16px;
             margin: 0 0 10px;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
         }
         .attempt, .explanation {
             padding: 10px;
-            border-radius: 6px;
+            border-radius: 0;
             margin-top: 10px;
+            border: 1px dashed #00ff00;
         }
         .attempt {
-            background-color: #ffebe8;
-            border: 1px solid #ffc9c4;
+            background-color: #330000; /* Dark red for incorrect */
+            color: #ff6666;
         }
         .explanation {
-            background-color: #e8f5e9;
-            border: 1px solid #c8e6c9;
+            background-color: #003300; /* Dark green for correct */
+            color: #66ff66;
         }
         code {
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-            background: #e9ebee;
+            font-family: 'VT323', monospace;
+            background: #000000;
+            color: #00ffff;
             padding: 2px 4px;
-            border-radius: 4px;
+            border-radius: 2px;
             font-size: 0.9em;
+            text-shadow: none;
         }
         pre {
-            background: #e9ebee;
+            background: #000000;
+            color: #00ff00;
             padding: 10px;
-            border-radius: 4px;
+            border-radius: 2px;
             white-space: pre-wrap;
             word-wrap: break-word;
+            border: 1px solid #00ff00;
+            text-shadow: none;
         }
     </style>
 </head>
@@ -111,7 +164,7 @@
 
     <div class="container">
         <header>
-            <h1>Postman Learning Dashboard</h1>
+            <h1>Postman-API-Laboratory</h1>
             <p>A summary of your API testing practice sessions.</p>
         </header>
 
