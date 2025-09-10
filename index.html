@@ -17,14 +17,17 @@
             line-height: 1.6;
             font-size: 16px;
             overflow-x: hidden; /* Prevent horizontal scroll */
+            /* Subtle background pattern */
+            background-image: radial-gradient(circle at 1px 1px, #1a1a1a 1px, transparent 0);
+            background-size: 20px 20px;
         }
         .container {
             max-width: 900px; /* Slightly wider */
             margin: 40px auto; /* More vertical margin */
             background: #1a1a1a; /* Darker content background */
-            /* border: 1px solid #333; */ /* Subtle border */
+            border: 1px solid #00ffff; /* Cyan border */
             border-radius: 8px; /* Slightly rounded corners */
-            /* box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1); */ /* Subtle cyan glow */
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 10px rgba(0, 255, 255, 0.2); /* Enhanced cyan glow */
             padding: 30px;
             position: relative;
             z-index: 1; /* Ensure content is above any background effects */
@@ -39,34 +42,35 @@
         }
         header h1 {
             font-family: 'Space Mono', monospace; /* Monospace for titles */
-            font-size: 32px;
+            font-size: 36px; /* Slightly larger */
             margin: 0;
             color: #00ffff; /* Cyan for main title */
-            letter-spacing: 2px; /* Spaced out letters */
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Glow effect */
+            letter-spacing: 3px; /* More spaced out letters */
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 8px rgba(0, 255, 255, 0.5); /* Enhanced glow effect */
         }
         header p {
-            margin: 10px 0 0;
-            color: #888; /* Muted description */
-            font-size: 15px;
-            letter-spacing: 0.5px;
+            margin: 15px 0 0; /* More vertical margin */
+            color: #aaa; /* Slightly less muted description */
+            font-size: 16px; /* Slightly larger */
+            letter-spacing: 1px; /* More spaced out letters */
         }
 
         /* Progress Tracker */
         .progress-tracker {
             margin-bottom: 30px;
             background-color: #1a1a1a;
-            /* border: 1px solid #333; */
+            border: 1px solid #00ffff; /* Cyan border */
             border-radius: 8px;
             padding: 20px;
-            /* box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.1); */
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2); /* Subtle cyan glow */
         }
         .progress-tracker h2 {
             font-family: 'Space Mono', monospace;
-            font-size: 20px;
+            font-size: 22px; /* Slightly larger */
             margin-bottom: 15px;
             color: #00ffff;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px; /* More spaced out */
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Subtle glow */
         }
         .progress-bar-container {
             width: 100%;
@@ -75,6 +79,8 @@
             height: 25px;
             overflow: hidden;
             position: relative;
+            border: 1px solid #00ffff; /* Cyan border */
+            box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.1); /* Inner glow */
         }
         .progress-bar {
             width: 0%; /* Set by JS */
@@ -87,9 +93,11 @@
             font-weight: bold;
             font-size: 14px;
             font-family: 'Space Mono', monospace;
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Green glow */
         }
         #progressText {
             font-family: 'Space Mono', monospace;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.5); /* Dark shadow for readability */
         }
 
         /* Contribution Graph */
@@ -97,9 +105,9 @@
             margin-top: 20px;
             padding: 15px;
             background-color: #1a1a1a;
-            border: 1px solid #333;
+            border: 1px solid #00ffff; /* Cyan border */
             border-radius: 8px;
-            box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2); /* Subtle cyan glow */
             display: flex;
             flex-wrap: wrap;
             gap: 3px;
@@ -111,20 +119,21 @@
             background-color: #222; /* Base inactive color */
             border-radius: 2px;
             transition: background-color 0.3s ease;
+            box-shadow: 0 0 2px rgba(0, 255, 255, 0.1); /* Subtle glow for each square */
         }
         .day-square.level-0 { background-color: #222; }
-        .day-square.level-1 { background-color: #004d4d; }
-        .day-square.level-2 { background-color: #008080; }
-        .day-square.level-3 { background-color: #00b3b3; }
-        .day-square.level-4 { background-color: #00ffff; }
+        .day-square.level-1 { background-color: #004d4d; box-shadow: 0 0 4px rgba(0, 255, 255, 0.2); }
+        .day-square.level-2 { background-color: #008080; box-shadow: 0 0 6px rgba(0, 255, 255, 0.3); }
+        .day-square.level-3 { background-color: #00b3b3; box-shadow: 0 0 8px rgba(0, 255, 255, 0.4); }
+        .day-square.level-4 { background-color: #00ffff; box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
 
         /* Session & QA Cards */
         details {
             margin-bottom: 20px;
-            /* border: 1px solid #333; */
+            border: 1px solid #00ffff; /* Cyan border */
             border-radius: 8px;
             background-color: #1a1a1a;
-            /* box-shadow: 0 2px 8px rgba(0, 255, 255, 0.05); */
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2); /* Subtle cyan glow */
         }
         summary {
             font-family: 'Space Mono', monospace;
@@ -134,14 +143,15 @@
             cursor: pointer;
             outline: none;
             user-select: none;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #00ffff; /* Cyan border */
             letter-spacing: 1px;
         }
         summary:hover {
             background-color: #2a2a2a;
+            box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.1); /* Inner glow on hover */
         }
         details[open] summary {
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #00ffff;
         }
         .session-content {
             padding: 20px;
@@ -152,11 +162,11 @@
         }
         .qa-card {
             background: #0a0a0a;
-            /* border: 1px solid #333; */
+            border: 1px solid #00ffff; /* Cyan border */
             border-radius: 6px;
             padding: 15px;
             margin-bottom: 15px;
-            /* box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.05); */
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.1); /* Subtle cyan glow */
         }
         .qa-card h4 {
             font-family: 'Space Mono', monospace;
@@ -164,6 +174,7 @@
             margin: 0 0 10px;
             color: #00ffff;
             letter-spacing: 0.5px;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3); /* Subtle glow */
         }
         .attempt, .explanation {
             padding: 10px;
@@ -183,11 +194,12 @@
         }
         code {
             font-family: 'Space Mono', monospace;
-            background: rgba(0, 255, 255, 0.1); /* Cyan tint for code */
+            background: rgba(0, 255, 255, 0.15); /* Slightly more intense cyan tint for code */
             color: #00ffff;
-            padding: 2px 4px;
+            padding: 3px 5px;
             border-radius: 4px;
-            font-size: 0.9em;
+            font-size: 0.95em; /* Slightly larger */
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); /* Subtle glow */
         }
         pre {
             font-family: 'Space Mono', monospace;
@@ -199,7 +211,7 @@
             word-wrap: break-word;
             border: 1px solid #00ffff; /* Cyan border for code blocks */
             overflow-x: auto;
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.5); /* Enhanced glow */
         }
 
         /* Learning Pathway Specific Styles */
@@ -217,9 +229,11 @@
             margin-top: 25px;
             margin-bottom: 10px;
             letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3); /* Subtle glow */
         }
         .learning-pathway li strong {
             color: #00ffff;
+            text-shadow: 0 0 3px rgba(0, 255, 255, 0.2); /* Subtle glow */
         }
     </style>
 </head>
@@ -234,6 +248,11 @@
         </header>
 
         <div class="progress-tracker">
+            <div class="contribution-graph">
+                <h2>Contribution Graph</h2>
+                <!-- Contribution squares will be generated here by JS -->
+            </div>
+
             <h2>Overall Progress</h2>
             <div class="progress-bar-container">
                 <div class="progress-bar" id="progressBar"><span id="progressText"></span></div>
@@ -254,10 +273,6 @@
                 <ul id="skillsList" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
                     <!-- Skills will be populated by JS -->
                 </ul>
-            </div>
-
-            <div class="contribution-graph">
-                <!-- Contribution squares will be generated here by JS -->
             </div>
         </div>
 

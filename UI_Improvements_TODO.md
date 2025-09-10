@@ -9,7 +9,7 @@ This document outlines planned visual and interactive enhancements for the dashb
 
 ## 2. Visual Enhancements & Polish
 
-*   [ ] **Refine GitHub Dark Theme:** Fine-tune colors, spacing, and element styles to more closely match the `ai-2027.com` aesthetic (e.g., subtle glows, specific border treatments, background patterns).
+*   [x] **Refine GitHub Dark Theme:** Fine-tune colors, spacing, and element styles to more closely match the `ai-2027.com` aesthetic (e.g., subtle glows, specific border treatments, background patterns).
 *   [ ] **Code Block Styling:** Enhance `code` and `pre` block styling (e.g., optional line numbers, basic syntax highlighting if feasible without heavy libraries).
 *   [ ] **Subtle Animations:** Add subtle, non-distracting animations (e.g., blinking cursor effect on certain text, subtle hover effects on clickable elements).
 *   [ ] **Loading States:** (If dynamic data fetching were implemented later) Add visual indicators for loading content.
