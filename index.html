@@ -79,7 +79,7 @@
         .progress-bar {
             width: 0%; /* Set by JS */
             height: 100%;
-            background-color: #00ffff; /* Cyan for progress */
+            background-color: #00ff00; /* Green for progress */
             transition: width 0.5s ease-in-out;
             text-align: center;
             line-height: 25px;
@@ -250,7 +250,7 @@
             </div>
 
             <div class="skills-learned" style="margin-top: 30px;">
-                <h3>Skills Learned (SEO-Friendly)</h3>
+                <h3>Skills Learned</h3>
                 <ul id="skillsList" style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
                     <!-- Skills will be populated by JS -->
                 </ul>
@@ -450,7 +450,7 @@ Body:
             const skillsList = document.getElementById('skillsList');
             seoSkills.forEach(skill => {
                 const li = document.createElement('li');
-                li.style.backgroundColor = '#004d4d'; // Dark cyan background
+                li.style.backgroundColor = '#006600'; // Darker green background
                 li.style.padding = '5px 10px';
                 li.style.borderRadius = '4px';
                 li.style.fontSize = '0.9em';
