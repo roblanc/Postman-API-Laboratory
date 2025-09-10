@@ -362,6 +362,13 @@ Body:
             document.getElementById('charactersTyped').innerText = charactersTyped;
             document.getElementById('sessionsFollowed').innerText = sessionsFollowed;
 
+            // Populate icons
+            document.getElementById('iconMistakes').innerText = '❌'; // Red X for mistakes
+            document.getElementById('iconWords').innerText = '📖'; // Open book for words read
+            document.getElementById('iconCharacters').innerText = '✍️'; // Writing hand for characters typed
+            document.getElementById('iconSessions').innerText = '📊'; // Bar chart for sessions followed
+            document.getElementById('iconStatus').innerText = '🧑‍💻'; // Programmer emoji for status
+
             // Programmer Status Ranking
             let programmerStatus = "Initiate";
             if (accuracy >= 25) {
