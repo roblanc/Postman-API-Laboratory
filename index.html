@@ -59,35 +59,86 @@
             border-radius: 8px;
             padding: 20px;
         }
-        /* New styles for metrics display */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
-            gap: 15px;
-            margin-top: 20px;
+        .progress-tracker h2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 22px; /* Slightly larger */
+            margin-bottom: 15px;
+            color: #00ffff;
+            letter-spacing: 1.5px; /* More spaced out */
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Subtle glow */
         }
-        .metric-item {
-            background-color: #0a0a0a; /* Darker background for each item */
-            padding: 15px;
-            border-radius: 8px;
+        .progress-bar-container {
+            width: 100%;
+            background-color: #333;
+            border-radius: 4px;
+            height: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar {
+            width: 0%; /* Set by JS */
+            height: 100%;
+            background-color: #00ff00; /* Green for progress */
+            transition: width 0.5s ease-in-out;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100px; /* Uniform height */
+            line-height: 25px;
+            color: #0a0a0a;
+            font-weight: bold;
+            font-size: 14px;
+            font-family: 'Space Mono', monospace;
         }
-        .metric-item p {
-            margin: 5px 0;
+        #progressText {
+            font-family: 'Space Mono', monospace;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.5); /* Dark shadow for readability */
+        }
+
+        /* Contribution Graph */
+        .contribution-graph {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #1a1a1a;
+            border: 1px solid #333; /* Re-adding border */
+            border-radius: 8px;
+            box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.1); /* Re-adding box-shadow */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            justify-content: center;
+        }
+        .day-square {
+            width: 15px;
+            height: 15px;
+            background-color: #222; /* Base inactive color */
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+        }
+        .day-square.level-0 { background-color: #222; }
+        .day-square.level-1 { background-color: #004d4d; }
+        .day-square.level-2 { background-color: #008080; }
+        .day-square.level-3 { background-color: #00b3b3; }
+        .day-square.level-4 { background-color: #00ffff; }
+
+        /* Simple Metrics Display */
+        .metrics-summary-simple {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            gap: 5px; /* Smaller gap between lines */
             font-size: 1.1em;
         }
-        .metric-item strong {
-            color: #00ffff;
+        .metrics-summary-simple p {
+            margin: 0; /* Remove default paragraph margins */
+            display: flex;
+            align-items: center;
         }
-        .metric-icon {
-            font-size: 2em; /* Size for icons */
-            margin-bottom: 5px;
+        .metrics-summary-simple .metric-icon-small {
+            font-size: 1.2em; /* Smaller icon size */
+            margin-right: 8px;
             color: #00ff00; /* Green color for icons */
+        }
+        .metrics-summary-simple strong {
+            color: #00ffff;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -112,23 +163,11 @@
                 <div class="progress-bar" id="progressBar"><span id="progressText"></span></div>
             </div>
 
-            <div class="metrics-grid" style="margin-top: 20px;">
-                <div class="metric-item">
-                    <span class="metric-icon" id="iconMistakes"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg></span>
-                    <p><strong>Mistakes Made:</strong> <span id="mistakesMade">0</span></p>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-icon" id="iconWords"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h12v16H6V4zm5 14h2v-2h-2v2zm0-4h2V8h-2v6z"/></svg></span>
-                    <p><strong>Words Read:</strong> <span id="wordsRead">0</span></p>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-icon" id="iconSessions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></span>
-                    <p><strong>Sessions Followed:</strong> <span id="sessionsFollowed">0</span></p>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-icon" id="iconStatus"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
-                    <p><strong>Programmer Status:</strong> <span id="programmerStatus" style="color: #00ffff;">Initiate</span></p>
-                </div>
+            <div class="metrics-summary-simple">
+                <p><span class="metric-icon-small" id="iconMistakes"></span><strong>Mistakes Made:</strong> <span id="mistakesMade">0</span></p>
+                <p><span class="metric-icon-small" id="iconWords"></span><strong>Words Read:</strong> <span id="wordsRead">0</span></p>
+                <p><span class="metric-icon-small" id="iconSessions"></span><strong>Sessions Followed:</strong> <span id="sessionsFollowed">0</span></p>
+                <p><span class="metric-icon-small" id="iconStatus"></span><strong>Programmer Status:</strong> <span id="programmerStatus" style="color: #00ffff;">Initiate</span></p>
             </div>
 
             <div class="skills-learned" style="margin-top: 30px;">
