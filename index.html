@@ -329,6 +329,54 @@ Body:
                 </div>
             </details>
 
+            <details>
+                <summary>Session 3: API Authentication & Basic Tests (OpenWeatherMap API)</summary>
+                <div class="session-content">
+                    <p><em>This session focused on using a real-world API that requires an API key for authentication. We also wrote our first dynamic tests based on the live response data.</em></p>
+
+                    <div class="qa-card">
+                        <h4>Test 1: Authenticating with an API Key (GET)</h4>
+                        <p><strong>Scenario:</strong> You need to fetch the current weather for "Bucharest, Romania" from the OpenWeatherMap API. This requires authenticating the request with your personal API key.</p>
+                        <div class="explanation">
+                            <strong>Correct Implementation:</strong>
+                            <p>Method: <code>GET</code><br>URL: <code>https://api.openweathermap.org/data/2.5/weather</code></p>
+                            <p>Query Parameters:</p>
+                            <ul>
+                                <li><code>q</code>: <code>Bucharest,ro</code></li>
+                                <li><code>appid</code>: <code>a8a283f4ef3aae6e20e278a83bcb80ae</code></li>
+                                <li><code>units</code>: <code>metric</code></li>
+                            </ul>
+                            <p>This request correctly uses query parameters to specify the location and provide the API key for authentication, resulting in a <code>200 OK</code> status.</p>
+                        </div>
+                    </div>
+
+                    <div class="qa-card">
+                        <h4>Test 2: Writing Response Tests</h4>
+                        <p><strong>Scenario:</strong> After receiving a successful response, you need to write tests to validate its contents and ensure the API is returning the correct data.</p>
+                        <div class="explanation">
+                            <strong>Correct Test Script:</strong>
+                            <pre><code>// Test 1: Check the status code
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+// Test 2: Check the city name
+pm.test("Response body includes correct city name", function () {
+    const responseData = pm.response.json();
+    pm.expect(responseData.name).to.eql("Bucharest");
+});
+
+// Test 3: Check country code
+pm.test("Response body includes correct country code", function () {
+    const responseData = pm.response.json();
+    pm.expect(responseData.sys.country).to.eql("RO");
+});</code></pre>
+                            <p>This script validates three critical parts of the response: the status code is successful, the city name is correct, and the nested country code is correct. This confirms the data integrity.</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
             <details class="learning-pathway">
                 <summary>Your Learning Pathway: Where You Are & What's Next</summary>
                 <div class="session-content">

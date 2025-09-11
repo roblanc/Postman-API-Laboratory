@@ -81,6 +81,35 @@ Authentication is how an API identifies who is making a request. It's crucial fo
 
 - **Next Step**: Try a practical example using a public API that requires an API Key.
 
+- **Practical Example: OpenWeatherMap**
+  - **Action**: Made a `GET` request in the Postman app to `https://api.openweathermap.org/data/2.5/weather`.
+  - **Parameters**: 
+    - `q`: `Bucharest,ro`
+    - `appid`: `a8a283f4ef3aae6e20e278a83bcb80ae` (user-provided key)
+    - `units`: `metric`
+  - **Outcome**: Successfully received a `200 OK` response.
+  - **Tests Written**:
+    ```javascript
+    // Test 1: Check the status code
+    pm.test("Status code is 200", function () {
+        pm.response.to.have.status(200);
+    });
+
+    // Test 2: Check the city name
+    pm.test("Response body includes correct city name", function () {
+        const responseData = pm.response.json();
+        pm.expect(responseData.name).to.eql("Bucharest");
+    });
+
+    // Test 3: Check country code
+    pm.test("Response body includes correct country code", function () {
+        const responseData = pm.response.json();
+        pm.expect(responseData.sys.country).to.eql("RO");
+    });
+    ```
+  - **Status**: Completed.
+
+
 ## Section 5: Testing and Automation
 
 ### 5.1 Writing Basic Tests
